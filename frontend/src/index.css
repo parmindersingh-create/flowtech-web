@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Cabinet Grotesk';
+  src: url('https://fonts.cdnfonts.com/s/83519/CabinetGrotesk-Extrabold.woff') format('woff');
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Cabinet Grotesk';
+  src: url('https://fonts.cdnfonts.com/s/83519/CabinetGrotesk-Black.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+}
+
+body {
+    margin: 0;
+    font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cabinet Grotesk', sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+code, .font-mono {
+    font-family: 'IBM Plex Mono', monospace;
+}
+
+@layer base {
+    :root {
+        --background: 0 0% 100%;
+        --foreground: 222.2 84% 4.9%;
+        --card: 0 0% 100%;
+        --card-foreground: 222.2 84% 4.9%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 222.2 84% 4.9%;
+        --primary: 221 83% 53%;
+        --primary-foreground: 210 40% 98%;
+        --secondary: 210 40% 96.1%;
+        --secondary-foreground: 222.2 47.4% 11.2%;
+        --muted: 210 40% 96.1%;
+        --muted-foreground: 215.4 16.3% 46.9%;
+        --accent: 210 40% 96.1%;
+        --accent-foreground: 222.2 47.4% 11.2%;
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 210 40% 98%;
+        --border: 214.3 31.8% 91.4%;
+        --input: 214.3 31.8% 91.4%;
+        --ring: 221 83% 53%;
+        --success: 160 84% 39%;
+        --warning: 38 92% 50%;
+        --radius: 0rem;
+    }
+    
+    .dark {
+        --background: 0 0% 4%;
+        --foreground: 0 0% 100%;
+        --card: 0 0% 9%;
+        --card-foreground: 0 0% 100%;
+        --popover: 0 0% 9%;
+        --popover-foreground: 0 0% 100%;
+        --primary: 217 91% 60%;
+        --primary-foreground: 0 0% 100%;
+        --secondary: 0 0% 15%;
+        --secondary-foreground: 0 0% 100%;
+        --muted: 0 0% 15%;
+        --muted-foreground: 0 0% 64%;
+        --accent: 0 0% 15%;
+        --accent-foreground: 0 0% 100%;
+        --destructive: 0 72% 51%;
+        --destructive-foreground: 0 0% 100%;
+        --border: 0 0% 25%;
+        --input: 0 0% 25%;
+        --ring: 217 91% 60%;
+        --success: 160 84% 60%;
+        --warning: 45 93% 58%;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground;
+    }
+}
+
+/* Status colors */
+.status-running {
+    @apply bg-emerald-500 text-white;
+}
+
+.status-idle {
+    @apply bg-amber-500 text-white;
+}
+
+.status-breakdown {
+    @apply bg-red-500 text-white;
+}
+
+/* Status dots */
+.status-dot {
+    @apply w-3 h-3 rounded-full animate-pulse;
+}
+
+.status-dot-running {
+    @apply bg-emerald-500;
+}
+
+.status-dot-idle {
+    @apply bg-amber-500;
+}
+
+.status-dot-breakdown {
+    @apply bg-red-500;
+}
+
+/* TV Mode specific styles */
+.tv-mode {
+    @apply dark;
+}
+
+.tv-mode .machine-card {
+    @apply p-8 text-xl;
+}
+
+.tv-mode .machine-card h3 {
+    @apply text-2xl;
+}
+
+/* Table hover */
+.table-row-hover {
+    @apply transition-colors hover:bg-muted/50;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground));
+}
+
+@layer base {
+    [data-debug-wrapper="true"] {
+        display: contents !important;
+    }
+}
