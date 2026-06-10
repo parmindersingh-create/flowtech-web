@@ -1,3 +1,4 @@
+import json
 from fastapi import FastAPI, HTTPException, Request, Response, Depends, UploadFile, File, Body, Form
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse, FileResponse, StreamingResponse
@@ -1047,7 +1048,8 @@ async def logout(request: Request, response: Response):
             # Get current user to check role
             user = await db.users.find_one({"user_id": user_id})
             # Reset user's role to 'pending' only if not Admin
-            if user and user.get("role") != "Admin":
+            ADMIN_ROLES = {"super_admin", "manager", "hr", "Admin"}
+            if user and user.get("role") not in ADMIN_ROLES:
                 await db.users.update_one(
                     {"user_id": user_id},
                     {"$set": {"role": "pending"}}
