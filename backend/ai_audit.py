@@ -10,7 +10,11 @@ from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 from typing import Dict, List, Any, Optional
 from dotenv import load_dotenv
-from emergentintegrations.llm.chat import LlmChat, UserMessage
+try:
+    from emergentintegrations.llm.chat import LlmChat, UserMessage
+except ImportError:
+    LlmChat = None
+    UserMessage = None
 
 load_dotenv()
 
