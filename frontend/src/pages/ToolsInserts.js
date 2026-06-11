@@ -209,7 +209,7 @@ const ToolsInserts = () => {
     if (!q || q <= 0) return toast.error('Enter a valid quantity');
     setSubmitting(true);
     try {
-      await axios.post(`${API}/api/tools-inserts/${selected.item_id}/add-stock`, {
+      await axios.post(`${API}/api/tools-inserts/${selected.item_id}/add-qty`, {
         quantity: q, added_by: stockForm.added_by, remarks: stockForm.remarks,
       });
       toast.success('Stock added'); setAddStockOpen(false); fetchItems();
@@ -236,7 +236,8 @@ const ToolsInserts = () => {
     if (!issueForm.issued_to.trim()) return toast.error('Issued To is required');
     setSubmitting(true);
     try {
-      await axios.post(`${API}/api/tools-inserts/${selected.item_id}/issue`, {
+      await axios.post(`${API}/api/tools-inserts/issue`, {
+        item_id: selected.item_id,
         quantity: q,
         issued_to: issueMode === 'select' ? (issueUserId || null) : null,
         issued_to_name: issueForm.issued_to,
@@ -268,7 +269,8 @@ const ToolsInserts = () => {
     if (!scrapForm.reason.trim()) return toast.error('Reason is required');
     setSubmitting(true);
     try {
-      await axios.post(`${API}/api/tools-inserts/${selected.item_id}/scrap`, {
+      await axios.post(`${API}/api/tools-inserts/scrap`, {
+        item_id: selected.item_id,
         quantity: q,
         reason: scrapForm.reason,
         returned_by: scrapMode === 'collect' ? (scrapUserId || null) : null,

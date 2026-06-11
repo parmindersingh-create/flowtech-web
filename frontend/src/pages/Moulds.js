@@ -153,7 +153,8 @@ const Moulds = () => {
     if (!giveForm.given_to_name.trim()) return toast.error('Select a user or enter a name');
     setSubmitting(true);
     try {
-      await axios.post(`${API}/api/moulds/${selected.mould_id}/give`, {
+      await axios.post(`${API}/api/moulds/${selected.mould_id}/transaction`, {
+        action: "give",
         given_to: giveForm.given_to || null,
         given_to_name: giveForm.given_to_name,
         signature: giveForm.signature || null,
@@ -168,7 +169,8 @@ const Moulds = () => {
     e.preventDefault();
     setSubmitting(true);
     try {
-      await axios.post(`${API}/api/moulds/${selected.mould_id}/return`, {
+      await axios.post(`${API}/api/moulds/${selected.mould_id}/transaction`, {
+        action: "return",
         returned_by_name: returnForm.returned_by_name || null,
         signature: returnForm.signature || null,
         remarks: returnForm.remarks || null,
